@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Fixed::Fixed(void) : integer_(0) {
+Fixed::Fixed(void) : rawbits_(0) {
   std::cout << "Default constructor called" << std::endl;
 }
 
@@ -18,18 +18,17 @@ Fixed::~Fixed(void) {
 Fixed& Fixed::operator=(const Fixed& other) {
   std::cout << "Assignation operator called" << std::endl;
   if (this != &other) {
-    // this->integer_ = other.integer_;
-    this->setRawBits(other.getRawBits());
+    this->rawbits_ = other.getRawBits();
   }
   return *this;
 }
 
 int Fixed::getRawBits(void) const {
   std::cout << "getRawBits member function called" << std::endl;
-  return integer_ << fract_;
+  return rawbits_;
 }
 
 void Fixed::setRawBits(int const raw) {
   std::cout << "setRawBits member function called" << std::endl;
-  integer_ = raw >> fract_;
+  rawbits_ = raw;
 }

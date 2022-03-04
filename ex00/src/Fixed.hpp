@@ -3,8 +3,8 @@
 
 class Fixed {
  private:
-    int integer_;
-    static const int fract_ = 8;
+    int rawbits_;
+    static const int fractbitswidth_ = 8;
 
  public:
     Fixed(void);
