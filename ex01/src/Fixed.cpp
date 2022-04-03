@@ -11,8 +11,6 @@ Fixed::Fixed(int integer) : rawbits_(integer << fractbitswidth_) {
   std::cout << "Int constructor called" << std::endl;
 }
 
-// floater = 1.2345
-// 
 Fixed::Fixed(float floater) : rawbits_((int)(roundf(floater * (1 << fractbitswidth_)))) {
   std::cout << "Float constructor called" << std::endl;
 }
