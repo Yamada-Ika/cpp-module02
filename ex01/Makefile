@@ -1,5 +1,5 @@
 CC		:= c++
-CFLAGS	:= -Wall -Wextra -Werror
+CXXFLAGS	:= -Wall -Wextra -Werror
 COPTS	:= -std=c++98 -pedantic
 INCLUDE	:= -I src
 
@@ -12,10 +12,10 @@ OBJS	:= $(addprefix obj/, $(OBJS))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(COPTS) $(INCLUDE) $(OBJS)
+	$(CC) -o $(NAME) $(CXXFLAGS) $(COPTS) $(INCLUDE) $(OBJS)
 
 obj/%.o: src/%.cpp
-	$(CC) $(CFLAGS) $(COPTS) $(INCLUDE) -o $@ -c $^
+	$(CC) $(CXXFLAGS) $(COPTS) $(INCLUDE) -o $@ -c $^
 
 clean:
 	rm -rf $(OBJS)
