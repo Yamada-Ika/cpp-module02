@@ -1,7 +1,7 @@
-CC		:= c++
-CXXFLAGS	:= #-Wall -Wextra -Werror
-COPTS	:= -std=c++98 -pedantic
-INCLUDE	:= -I src
+CC			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror
+COPTS		:= -std=c++98 -pedantic-errors
+INCLUDE		:= -I src
 
 NAME	:= a.out
 SRCS	:= Fixed.cpp Point.cpp bsp.cpp   main.cpp
@@ -25,4 +25,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all
+	./a.out
+
+.PHONY: all clean fclean re run

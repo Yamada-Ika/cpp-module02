@@ -3,75 +3,52 @@
 #include <iostream>
 #include <cmath>
 
-Point::Point(void) : x(Fixed(0)), y(Fixed(0)) {
-  // std::cout << "Default constructor called" << std::endl;
-}
+Point::Point(void) : x(Fixed(0)), y(Fixed(0)) {}
 
-Point::Point(float x, float y) : x(Fixed(x)), y(Fixed(y)) {
-  // std::cout << "Int constructor called" << std::endl;
-}
+Point::Point(float x, float y) : x(Fixed(x)), y(Fixed(y)) {}
 
-Point::Point(Fixed x, Fixed y) : x(x), y(y) {
-  // std::cout << "Int constructor called" << std::endl;
-}
+Point::Point(Fixed x, Fixed y) : x(x), y(y) {}
 
 Point::Point(const Point& other) {
-  // std::cout << "Copy constructor called" << std::endl;
-  *this = other;
+    *this = other;
 }
 
-Point::~Point(void) {
-  // std::cout << "Destructor called" << std::endl;
-}
+Point::~Point(void) {}
 
-Point& Point::operator=(const Point& other) {
-  // std::cout << "Copy assignment operator called" << std::endl;
-  if (this != &other) {
-    Fixed thisX = this->getX();
-    Fixed thisY = this->getY();
-    thisX = other.getX();
-    thisY = other.getY();
-  }
-  return *this;
+Point& Point::operator=(__attribute__((unused)) const Point& other) {
+    return *this;
 }
 
 Fixed& Point::getX(void) const {
-  return const_cast<Fixed &>(x);
+    return const_cast<Fixed &>(x);
 }
 
 Fixed& Point::getY(void) const {
-  return const_cast<Fixed &>(y);
+    return const_cast<Fixed &>(y);
 }
 
-Point Point::getDelta(const Point to) const {
-  return Point(to.getX() - this->getX(), to.getY() - this->getY());
+Point Point::findVector(const Point &to) const {
+    return Point(to.getX() - this->getX(), to.getY() - this->getY());
 }
 
 int Point::cross(const Point &p1, const Point &center, const Point &p2) {
-  // Point center_to_1 = center.getDelta(p1);
-  // Point center_to_2 = center.getDelta(p2);
+    Point c_to_p1 = center.findVector(p1);
+    Point c_to_p2 = center.findVector(p2);
 
-  std::cout << p1.getX() << std::endl;
-  std::cout << center.getX() << std::endl;
-  std::cout << p1.getX() - center.getX() << std::endl;
-  // std::cout << p1.getY() - center.getY() << std::endl;
-  // std::cout << p2.getX() - center.getX() << std::endl;
-  // std::cout << p2.getY() - center.getY() << std::endl;
-  // std::cout << center_to_1 << std::endl;
-  // std::cout << center_to_2 << std::endl;
+    Fixed dir = c_to_p1.getX() * c_to_p2.getY() - c_to_p1.getY() * c_to_p2.getX();
 
-  // Fixed dir = center_to_1.getX() * center_to_2.getY() - center_to_1.getY() * center_to_2.getX();
-  // std::cout << dir << std::endl;
-  // if (dir > 0)
-  //   return (1);
-  return (-1);
+    if (dir > Fixed(0))
+        return 1;
+    if (dir == Fixed(0))
+        return 0;
+    return -1;
 }
 
 std::ostream& operator<<(std::ostream& lhs, const Point& rhs) {
-  lhs << "x : ";
-  lhs << rhs.getX();
-  lhs << " ";
-  lhs << "y : ";
-  lhs << rhs.getY();
-  return lhs;
+    lhs << "x : ";
+    lhs << rhs.getX();
+    lhs << " ";
+    lhs << "y : ";
+    lhs << rhs.getY();
+    return lhs;
 }

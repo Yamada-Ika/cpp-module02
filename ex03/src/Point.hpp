@@ -19,7 +19,7 @@ class Point {
     Fixed& getX(void) const;
     Fixed& getY(void) const;
     static int cross(const Point &p1, const Point &center, const Point &p2);
-    Point getDelta(const Point to) const;
+    Point findVector(const Point &to) const;
 };
 
 std::ostream& operator<<(std::ostream& lhs, const Point& rhs);

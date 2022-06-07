@@ -10,8 +10,8 @@ class Fixed {
 
  public:
     Fixed(void);
-    Fixed(int integer);
-    Fixed(float floater);
+    explicit Fixed(int integer);
+    explicit Fixed(float floater);
     Fixed(const Fixed& other);
     ~Fixed(void);
     Fixed& operator=(const Fixed& other);
