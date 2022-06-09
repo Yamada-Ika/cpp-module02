@@ -66,7 +66,6 @@ Fixed Fixed::operator* (const Fixed& rhs) const {
     long rhs_raw = rhs.getRawBits();
 
     mul.setRawBits((lhs_raw * rhs_raw) / (1 << fractbitswidth_));
-    // mul.setRawBits((lhs_raw * rhs_raw) >> fractbitswidth_);
     return mul;
 }
 
@@ -77,7 +76,6 @@ Fixed Fixed::operator/ (const Fixed& rhs) const {
     long rhs_raw = rhs.getRawBits();
 
     div.setRawBits(lhs_raw * (1 << fractbitswidth_) / rhs_raw);
-    // div.setRawBits((lhs_raw << fractbitswidth_) / rhs_raw);
     return div;
 }
 
@@ -136,11 +134,11 @@ Fixed& Fixed::max(Fixed& lhs, Fixed& rhs) {
     return lhs;
 }
 
-const Fixed& Fixed::max(const Fixed& lhs, const Fixed& rhs) {
+Fixed& Fixed::max(const Fixed& lhs, const Fixed& rhs) {
     if (lhs < rhs) {
-        return rhs;
+        return const_cast<Fixed &>(rhs);
     }
-    return lhs;
+    return const_cast<Fixed &>(lhs);
 }
 
 Fixed& Fixed::min(Fixed& lhs, Fixed& rhs) {
@@ -150,9 +148,9 @@ Fixed& Fixed::min(Fixed& lhs, Fixed& rhs) {
     return lhs;
 }
 
-const Fixed& Fixed::min(const Fixed& lhs, const Fixed& rhs) {
+Fixed& Fixed::min(const Fixed& lhs, const Fixed& rhs) {
     if (lhs > rhs) {
-        return rhs;
+        return const_cast<Fixed &>(rhs);
     }
-    return lhs;
+    return const_cast<Fixed &>(lhs);
 }

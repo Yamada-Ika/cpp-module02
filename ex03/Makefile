@@ -4,7 +4,7 @@ COPTS		:= -std=c++98 -pedantic-errors
 INCLUDE		:= -I src
 
 NAME	:= a.out
-SRCS	:= Fixed.cpp Point.cpp bsp.cpp   main.cpp
+SRCS	:= Fixed.cpp Point.cpp bsp.cpp main.cpp
 OBJS	:= $(SRCS:%.cpp=%.o)
 SRCS	:= $(addprefix src/, $(SRCS))
 OBJS	:= $(addprefix obj/, $(OBJS))

@@ -166,7 +166,6 @@ void originalTest(void) {
     comp(123.0f, 0.125f, &Mul<float>, Fixed(123.0f), Fixed(0.125f), &Mul<Fixed>, __LINE__);
     comp(123.0f, 0.25f, &Mul<float>, Fixed(123.0f), Fixed(0.25f), &Mul<Fixed>, __LINE__);
     comp(123.0f, 0.5f, &Mul<float>, Fixed(123.0f), Fixed(0.5f), &Mul<Fixed>, __LINE__);
-    // comp(-123.0f, 0.0f, &Mul<float>, Fixed(-123.0f), Fixed(0.0f), &Mul<Fixed>, __LINE__);
     comp(-123.0f, 0.00390625f, &Mul<float>, Fixed(-123.0f), Fixed(0.00390625f), &Mul<Fixed>, __LINE__);
     comp(-123.0f, 0.0078125f, &Mul<float>, Fixed(-123.0f), Fixed(0.0078125f), &Mul<Fixed>, __LINE__);
     comp(-123.0f, 0.015625f, &Mul<float>, Fixed(-123.0f), Fixed(0.015625f), &Mul<Fixed>, __LINE__);
@@ -276,10 +275,49 @@ void pdfTest(void) {
     std::cout << Fixed::max(a, b) << std::endl;
 }
 
+void comparisonTest(void) {
+    assert(Fixed(0.0f) > Fixed(0.0f) == false);
+    assert(Fixed(1.0f) > Fixed(0.0f) == true);
+    assert(Fixed(0.5f) > Fixed(0.0f) == true);
+    assert(Fixed(100) > Fixed(100) == false);
+    assert(Fixed(101) > Fixed(100) == true);
+
+    assert(Fixed(0.0f) < Fixed(0.0f) == false);
+    assert(Fixed(0.0f) < Fixed(1.0f) == true);
+    assert(Fixed(0.5f) < Fixed(0.0f) == false);
+    assert(Fixed(100) < Fixed(100) == false);
+    assert(Fixed(101) < Fixed(100) == false);
+
+    assert(Fixed(0.0f) >= Fixed(0.0f) == true);
+    assert(Fixed(1.0f) >= Fixed(0.0f) == true);
+    assert(Fixed(0.5f) >= Fixed(0.0f) == true);
+    assert(Fixed(100) >= Fixed(100) == true);
+    assert(Fixed(100) >= Fixed(101) == false);
+
+    assert(Fixed(0.0f) <= Fixed(0.0f) == true);
+    assert(Fixed(0.0f) <= Fixed(1.0f) == true);
+    assert(Fixed(0.5f) <= Fixed(0.0f) == false);
+    assert(Fixed(100) <= Fixed(100) == true);
+    assert(Fixed(101) <= Fixed(100) == false);
+
+    assert(Fixed(0.0f) == Fixed(0.0f) == true);
+    assert(Fixed(0.0f) == Fixed(1.0f) == false);
+    assert(Fixed(0.5f) == Fixed(0.0f) == false);
+    assert(Fixed(100) == Fixed(100) == true);
+    assert(Fixed(101) == Fixed(100) == false);
+
+    assert(Fixed(0.0f) != Fixed(0.0f) == false);
+    assert(Fixed(0.0f) != Fixed(1.0f) == true);
+    assert(Fixed(0.5f) != Fixed(0.0f) == true);
+    assert(Fixed(100) != Fixed(100) == false);
+    assert(Fixed(101) != Fixed(100) == true);
+}
+
 int main(void) {
     pdfTest();
     originalTest();
     discordTest();
+    comparisonTest();
 
     return 0;
 }

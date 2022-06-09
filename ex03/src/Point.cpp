@@ -7,7 +7,7 @@ Point::Point(void) : x(Fixed(0)), y(Fixed(0)) {}
 
 Point::Point(float x, float y) : x(Fixed(x)), y(Fixed(y)) {}
 
-Point::Point(Fixed x, Fixed y) : x(x), y(y) {}
+Point::Point(const Fixed &x, const Fixed &y) : x(x), y(y) {}
 
 Point::Point(const Point& other) {
     *this = other;

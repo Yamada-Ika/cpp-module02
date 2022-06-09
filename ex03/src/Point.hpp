@@ -12,7 +12,7 @@ class Point {
  public:
     Point(void);
     Point(float x, float y);
-    Point(Fixed x, Fixed y);
+    Point(const Fixed &x, const Fixed &y);
     Point(const Point& other);
     ~Point(void);
     Point& operator=(const Point& other);

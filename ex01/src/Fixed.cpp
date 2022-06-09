@@ -50,8 +50,6 @@ float Fixed::toFloat(void) const {
 }
 
 std::ostream& operator<<(std::ostream& lhs, const Fixed& rhs) {
-    // lhs << std::fixed;
-    lhs << rhs.toInt();
-    // lhs << rhs.toFloat();
+    lhs << rhs.toFloat();
     return lhs;
 }
